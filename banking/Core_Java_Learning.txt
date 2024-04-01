@@ -6,4 +6,81 @@ Hence, all the set of groups created in interface will be mandatority popped up 
 So, there will be many classed with same method names but different functions. 
 To use in main class all we have to do is,
 interfaceclassname objectname = new otherclassname();
-Hence only the methods common to interfaceclassname will be displayed when we access objectname.
+Hence only the methods common to interfaceclassname which is used in that particualar class will be displayed when we access objectname.
+
+example in banking project:
+
+BankStatementProcessor is a interface class with method parsername. This class is now implemented in BankStatementCSVParser and now has the mandatory method parsername.
+
+BankStatementAnalyzer has method analyze() carries BankStatementProcessor as argument to access parsername method in BankStatementCSVParser class. It is possible by creating object as below in Main Application class.
+
+BankStatementParser bankStatementParser = new BankStatementCSVParser();
+
+try catch finally:
+finally is used to close the files opened.
+
+try with resource: syntax is try(){} This is to pass the objects in side try so that it get closed automatically. Refer oracle java documentation for detailed explanation for all the java related queries.
+static String readFirstLineFromFile(String path) throws IOException {
+	    try (FileReader fr = new FileReader(path);
+	         BufferedReader br = new BufferedReader(fr)) {
+	        return br.readLine();
+	    }
+	}	
+In this example, the resources declared in the try-with-resources statement are a FileReader and a BufferedReader. The declaration statements of these resources appear within parentheses immediately after the try keyword. The classes FileReader and BufferedReader, in Java SE 7 and later, implement the interface java.lang.AutoCloseable. Because the FileReader and BufferedReader instances are declared in a try-with-resource statement, they will be closed regardless of whether the try statement completes normally or abruptly (as a result of the method BufferedReader.readLine throwing an IOException).
+
+
+Boxing vs unboxing:
+Primitive datatype: int, float, double, boolean etc
+Wrappers: Integer, Float, Double, Boolean these have additional methods to perform.
+
+Converting primitive to wrapper is called boxing or wrapping:
+int i = 10;
+Integer z = i;
+
+converting wrapper to primitive is unboxing or unwrapping:
+Integer i = 10;
+int z = i;
+
+Constants:
+Static and final together assigned to variable is called constant.
+
+Final would retain the value not to get changed at all. But, it is still instance of a class, so for each object one value can be assigned and retained. Hence, each object has each final value.
+
+Along with static, all the instances will have one value which cannot be changed with final keyword.
+
+static final WEEKDAY = 5;
+
+var keyword:
+
+if the datatype is not known or dont want to mention, var keyword is used.
+
+var i = 5;
+
+now i is auto assigned to int.
+
+disadvantage: it can be only used for local variables not class variables. Always good to mention the variable dataype.
+
+****************
+
+println -> ln means line break at the end of the statement you ll get line break.
+
+Math.mathFunctions for all maths formulas.
+
+JOptionPane class helps in creating popups.
+
+JOptionPane.showInternalMessageDialog(null, "Hello World", "My Message Box", JOptionPane.YES_NO_CANCEL_OPTION);
+		String hi = JOptionPane.showInputDialog(null, "Enter your name");
+
+Difference between & vs &&:
+
+if ((i=10) & (i<5)) {} -> both conditions are evaluated and if both are true, if block executed. This is used if, second condition also has to be executed to update database something like that.
+if ((i=10) && (i<5)) {} -> if first condition is false, second condition will not even evaluate. This is smarter and time saving.
+
+break vs continue in while loop:
+
+break is to break all the loops if the condition is as expected.
+continue is just to skip only that condition and execute further.
+
+for eg:
+to print even numbers and stop if 12 comes: use break here.
+to print even numbers, skip only 12 and continue to the rest of the even numbers: replace break to keyword continue.

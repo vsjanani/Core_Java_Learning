@@ -2,6 +2,7 @@ package bank;
 
 import java.time.Month;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BankStatementProcessor {
 	private final List<BankTransactions> bankTransactions;
@@ -23,5 +24,16 @@ public class BankStatementProcessor {
 	public Double calculateTotalForCategory(final String category) {
 		Double total = bankTransactions.stream().filter(s->s.getDescription().equals(category)).mapToDouble(s->s.getAmount()).sum();
 		return total;
+	}
+	
+	public List<BankTransactions> findTransactionsGreaterThanOrEqual(Integer amount){
+		List<BankTransactions> result = bankTransactions.stream().filter(s->s.getAmount()>=amount).collect(Collectors.toList());
+		return result;
+		
+	}
+	
+	public List<BankTransactions> findTransactions(BankTransactionFilter bankTransactionFilter) {
+		List<BankTransactions> result = bankTransactions.stream().filter(s->bankTransactionFilter.test(s)).collect(Collectors.toList()); 
+		return result;
 	}
 }
